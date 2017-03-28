@@ -1,6 +1,6 @@
 # FlexboxUtils
 关于Flexbox的封装类，用于展示标签和操作标签，先上图
-![device-2017-03-28-181547](https://github.com/Kaka252/FlexboxUtils/blob/master/screenshot/device-2017-03-28-181547.png?raw=true)
+![preview](https://github.com/Kaka252/FlexboxUtils/blob/master/screenshot/device-2017-03-28-181547.png?raw=true)
 
 # 继承BaseTagView
 定义一个TagView，继承BaseTagView，由于每一个tag的数据类型不确定，因此需要传入一个固定的数据类型满足实际需求
