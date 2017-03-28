@@ -87,9 +87,26 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         for (T item : source) {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
+            initSelectedViews((V) view);
             view.setListener(listener);
             viewMap.put((V) view, item);
             rootView.addView(view);
+        }
+    }
+
+    /**
+     * 设置在初始化时所选中的View
+     * @param view
+     */
+    private void initSelectedViews(V view) {
+        if (selectItems != null && selectItems.size() > 0) {
+            for (T select : selectItems) {
+                if (checkIsItemNull(select)) continue;
+                if (checkIsItemSame(view, select)) {
+                    view.setItemSelected(true);
+                    break;
+                }
+            }
         }
     }
 
@@ -113,7 +130,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      */
     private void singleSelectMode(T item) {
         for (BaseTagView<T> view : viewMap.keySet()) {
-            if (checkIsSameItem((V) view, item)) {
+            if (checkIsItemSame((V) view, item)) {
                 view.setItemSelected(true);
             } else {
                 view.setItemSelected(false);
@@ -128,7 +145,9 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * @param item
      * @return
      */
-    protected abstract boolean checkIsSameItem(V view, T item);
+    protected abstract boolean checkIsItemSame(V view, T item);
+
+    protected abstract boolean checkIsItemNull(T item);
 
     /**
      * 添加单个标签

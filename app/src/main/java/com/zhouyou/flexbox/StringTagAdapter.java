@@ -23,15 +23,32 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 
     /**
      * 检查item和所选item是否一样
+     *
      * @param view
      * @param item
      * @return
      */
     @Override
-    protected boolean checkIsSameItem(StringTagView view, String item) {
+    protected boolean checkIsItemSame(StringTagView view, String item) {
         return TextUtils.equals(view.getItem(), item);
     }
 
+    /**
+     * 检查item是否是空指针
+     *
+     * @return
+     */
+    @Override
+    protected boolean checkIsItemNull(String item) {
+        return TextUtils.isEmpty(item);
+    }
+
+    /**
+     * 添加标签
+     *
+     * @param item
+     * @return
+     */
     @Override
     protected StringTagView addTag(String item) {
         StringTagView tagView = new StringTagView(getContext());
@@ -40,16 +57,6 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
         tagView.setItemDefaultTextColor(ContextCompat.getColor(getContext(), R.color.app_green));
         tagView.setItemSelectTextColor(Color.WHITE);
         tagView.setItem(item);
-        List<String> list = getSelectItems();
-        if (list != null && list.size() > 0) {
-            for (String select : getSelectItems()) {
-                if (TextUtils.isEmpty(select)) continue;
-                if (TextUtils.equals(select, item)) {
-                    tagView.setItemSelected(true);
-                    break;
-                }
-            }
-        }
         return tagView;
     }
 }

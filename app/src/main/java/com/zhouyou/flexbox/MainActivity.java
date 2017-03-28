@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("Java工程师");
 
         final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
-        adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
+//        adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override
             public void onSubscribe(List<String> selectedItem) {
