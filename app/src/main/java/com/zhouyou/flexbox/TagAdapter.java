@@ -196,19 +196,19 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         return selectedList;
     }
 
-    public void setItemDefaultDrawable(int itemDefaultDrawable) {
+    void setItemDefaultDrawable(int itemDefaultDrawable) {
         this.itemDefaultDrawable = itemDefaultDrawable;
     }
 
-    public void setItemSelectDrawable(int itemSelectDrawable) {
+    void setItemSelectDrawable(int itemSelectDrawable) {
         this.itemSelectDrawable = itemSelectDrawable;
     }
 
-    public void setItemDefaultTextColor(int itemDefaultTextColor) {
+    void setItemDefaultTextColor(int itemDefaultTextColor) {
         this.itemDefaultTextColor = itemDefaultTextColor;
     }
 
-    public void setItemSelectTextColor(int itemSelectTextColor) {
+    void setItemSelectTextColor(int itemSelectTextColor) {
         this.itemSelectTextColor = itemSelectTextColor;
     }
 }
