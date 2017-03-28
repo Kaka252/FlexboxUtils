@@ -111,6 +111,12 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
     StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
     adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
 ```
+# 选中高亮效果
+可以设置是否选中高亮，默认为选中高亮
+```
+    adapter.setShowHighlight(false);
+```
+
 # 切换、刷新数据
 在声明的adapter基础上，重新设置数据源和已选项，notifyDataSetChanged()方法并传入TagFlowLayout参数即可完成数据刷新操作
 ```

@@ -68,11 +68,10 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         if (listener == null) return;
-        selectItemChangeColorState();
         listener.onItemSelect(item);
     }
 
-    protected void selectItemChangeColorState() {
+    public void selectItemChangeColorState() {
         if (isItemSelected) {
             setBackgroundResource(itemDefaultDrawable);
             textView.setTextColor(itemDefaultTextColor);

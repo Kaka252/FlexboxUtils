@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("Java工程师");
 
         final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+        adapter.setShowHighlight(false);
         adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
         adapter.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));

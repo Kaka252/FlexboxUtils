@@ -39,6 +39,11 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      */
     private OnFlexboxSubscribeListener<T> onSubscribeListener;
 
+    /**
+     * 是否展示选中效果
+     */
+    private boolean isShowHighlight = true;
+
     /*默认和已选的背景*/
     protected int itemDefaultDrawable;
     protected int itemSelectDrawable;
@@ -73,6 +78,10 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         this.mode = mode;
     }
 
+    public void setShowHighlight(boolean showHighlight) {
+        isShowHighlight = showHighlight;
+    }
+
     public TagAdapter(Context context, List<T> source) {
         this.context = context;
         this.source = source;
@@ -105,7 +114,20 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
             initSelectedViews((V) view);
-            view.setListener(listener);
+            view.setListener(new TagWithListener<T>() {
+                @Override
+                public void onItemSelect(T item) {
+                    if (isShowHighlight) {
+                        view.selectItemChangeColorState();
+                    }
+                    if (mode == MODE_SINGLE_SELECT) {
+                        singleSelectMode(item);
+                    }
+                    if (onSubscribeListener != null) {
+                        onSubscribeListener.onSubscribe(getSelectedList());
+                    }
+                }
+            });
             viewMap.put((V) view, item);
             rootView.addView(view);
         }
@@ -117,6 +139,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * @param view
      */
     private void initSelectedViews(V view) {
+        if (!isShowHighlight) return;
         if (selectItems != null && selectItems.size() > 0) {
             for (T select : selectItems) {
                 if (checkIsItemNull(select)) continue;
@@ -127,21 +150,6 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             }
         }
     }
-
-    /**
-     * 点击标签的回调
-     */
-    private TagWithListener<T> listener = new TagWithListener<T>() {
-        @Override
-        public void onItemSelect(T item) {
-            if (mode == MODE_SINGLE_SELECT) {
-                singleSelectMode(item);
-            }
-            if (onSubscribeListener != null) {
-                onSubscribeListener.onSubscribe(getSelectedList());
-            }
-        }
-    };
 
     /**
      * 单选操作模式
@@ -155,6 +163,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             }
         }
     }
+
 
     /**
      * 刷新数据
