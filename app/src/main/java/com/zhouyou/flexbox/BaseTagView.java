@@ -3,8 +3,6 @@ package com.zhouyou.flexbox;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -47,10 +45,7 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     }
 
     private void init() {
-        setPadding(15, 15, 15, 15);
         textView = new TextView(getContext());
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         addView(textView);
         setOnClickListener(this);
     }
@@ -118,5 +113,9 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
 
     public void setItemSelectTextColor(int itemSelectTextColor) {
         this.itemSelectTextColor = itemSelectTextColor;
+    }
+
+    public TextView getTextView() {
+        return textView;
     }
 }

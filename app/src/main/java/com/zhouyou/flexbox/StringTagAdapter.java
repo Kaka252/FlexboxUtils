@@ -1,9 +1,10 @@
 package com.zhouyou.flexbox;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.util.TypedValue;
+import android.view.Gravity;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -52,10 +53,16 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
     @Override
     protected StringTagView addTag(String item) {
         StringTagView tagView = new StringTagView(getContext());
-        tagView.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
-        tagView.setItemSelectDrawable(R.drawable.bg_flow_selected);
-        tagView.setItemDefaultTextColor(ContextCompat.getColor(getContext(), R.color.app_green));
-        tagView.setItemSelectTextColor(Color.WHITE);
+        tagView.setPadding(20, 20, 20, 20);
+
+        TextView textView = tagView.getTextView();
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
+        textView.setGravity(Gravity.CENTER);
+
+        tagView.setItemDefaultDrawable(itemDefaultDrawable);
+        tagView.setItemSelectDrawable(itemSelectDrawable);
+        tagView.setItemDefaultTextColor(itemDefaultTextColor);
+        tagView.setItemSelectTextColor(itemSelectTextColor);
         tagView.setItem(item);
         return tagView;
     }

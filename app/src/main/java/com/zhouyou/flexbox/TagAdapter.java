@@ -27,12 +27,19 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     /**
      * view和tag的对应关系
      */
-    Map<V, T> viewMap;
+    private Map<V, T> viewMap;
 
     /**
      * 标签选择操作的订阅接口
      */
     private OnFlexboxSubscribeListener<T> onSubscribeListener;
+
+    /*默认和已选的背景*/
+    int itemDefaultDrawable;
+    int itemSelectDrawable;
+    /*默认和已选的文字颜色*/
+    int itemDefaultTextColor;
+    int itemSelectTextColor;
 
     /**
      * 操作模式 0 - 多选 | 1 - 单选
@@ -96,6 +103,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
     /**
      * 设置在初始化时所选中的View
+     *
      * @param view
      */
     private void initSelectedViews(V view) {
@@ -149,6 +157,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
     /**
      * 检查item是否是空指针
+     *
      * @param item
      * @return
      */
@@ -183,5 +192,21 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             }
         }
         return selectedList;
+    }
+
+    public void setItemDefaultDrawable(int itemDefaultDrawable) {
+        this.itemDefaultDrawable = itemDefaultDrawable;
+    }
+
+    public void setItemSelectDrawable(int itemSelectDrawable) {
+        this.itemSelectDrawable = itemSelectDrawable;
+    }
+
+    public void setItemDefaultTextColor(int itemDefaultTextColor) {
+        this.itemDefaultTextColor = itemDefaultTextColor;
+    }
+
+    public void setItemSelectTextColor(int itemSelectTextColor) {
+        this.itemSelectTextColor = itemSelectTextColor;
     }
 }

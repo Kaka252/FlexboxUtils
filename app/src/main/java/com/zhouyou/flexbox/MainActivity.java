@@ -1,6 +1,8 @@
 package com.zhouyou.flexbox;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
@@ -37,6 +39,10 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("Java工程师");
 
         final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+        adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
+        adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
+        adapter.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
+        adapter.setItemSelectTextColor(Color.WHITE);
 //        adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override
