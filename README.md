@@ -1,9 +1,8 @@
 # FlexboxUtils
 关于Flexbox的封装类，用于展示标签和操作标签
-# 如何使用
 
-1. 定义一个TagView，继承BaseTagView，由于每一个tag的数据类型不确定，因此需要传入一个固定的数据类型满足实际需求
-
+# 继承BaseTagView
+定义一个TagView，继承BaseTagView，由于每一个tag的数据类型不确定，因此需要传入一个固定的数据类型满足实际需求
 ```
 public class StringTagView extends BaseTagView<String> {
 
@@ -26,7 +25,9 @@ public class StringTagView extends BaseTagView<String> {
     }
 }
 ```
-2. 定义一个Adapter，继承TagAdapter，并实现相应的方法
+
+# 继承TagAdapter
+定义一个Adapter，继承TagAdapter，并实现相应的方法
 ```
 public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 
@@ -84,3 +85,4 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
     }
 }
 ```
+# 调用
