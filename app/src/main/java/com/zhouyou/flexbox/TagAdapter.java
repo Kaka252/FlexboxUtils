@@ -20,6 +20,11 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     private List<T> source;
 
     /**
+     * 已选项目
+     */
+    private List<T> selectItems;
+
+    /**
      * view和tag的对应关系
      */
     Map<V, T> viewMap;
@@ -40,6 +45,14 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         this.onSubscribeListener = onSubscribeListener;
     }
 
+    public void setSelectItems(List<T> selectItems) {
+        this.selectItems = selectItems;
+    }
+
+    public List<T> getSelectItems() {
+        return selectItems;
+    }
+
     public void setMode(int mode) {
         this.mode = mode;
     }
@@ -47,6 +60,13 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     TagAdapter(Context context, List<T> source) {
         this.context = context;
         this.source = source;
+        viewMap = new ArrayMap<>();
+    }
+
+    TagAdapter(Context context, List<T> source, List<T> selectItems) {
+        this.context = context;
+        this.source = source;
+        this.selectItems = selectItems;
         viewMap = new ArrayMap<>();
     }
 
@@ -67,21 +87,27 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         for (T item : source) {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
-            view.setListener(new TagWithListener<T>() {
-                @Override
-                public void onItemSelect(T item) {
-                    if (mode == MODE_SINGLE_SELECT) {
-                        singleSelectMode(item);
-                    }
-                    if (onSubscribeListener != null) {
-                        onSubscribeListener.onSubscribe(getSelectedList());
-                    }
-                }
-            });
+
+            view.setListener(listener);
             viewMap.put((V) view, item);
             rootView.addView(view);
         }
     }
+
+    /**
+     * 点击标签的回调
+     */
+    private TagWithListener<T> listener = new TagWithListener<T>() {
+        @Override
+        public void onItemSelect(T item) {
+            if (mode == MODE_SINGLE_SELECT) {
+                singleSelectMode(item);
+            }
+            if (onSubscribeListener != null) {
+                onSubscribeListener.onSubscribe(getSelectedList());
+            }
+        }
+    };
 
     /**
      * 单选操作模式

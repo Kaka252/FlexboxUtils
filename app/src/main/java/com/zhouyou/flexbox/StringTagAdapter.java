@@ -1,6 +1,7 @@
 package com.zhouyou.flexbox;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +13,27 @@ import java.util.List;
 public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 
     StringTagAdapter(Context context, List<String> data) {
-        super(context, data);
+        this(context, data, null);
+    }
+
+    StringTagAdapter(Context context, List<String> data, List<String> selectItems) {
+        super(context, data, selectItems);
     }
 
     @Override
     protected StringTagView addTag(String item) {
         StringTagView tagView = new StringTagView(getContext());
         tagView.setItem(item);
+        List<String> list = getSelectItems();
+        if (list != null && list.size() > 0) {
+            for (String select : getSelectItems()) {
+                if (TextUtils.isEmpty(select)) continue;
+                if (TextUtils.equals(select, item)) {
+                    tagView.setItemSelected(true);
+                    break;
+                }
+            }
+        }
         return tagView;
     }
 

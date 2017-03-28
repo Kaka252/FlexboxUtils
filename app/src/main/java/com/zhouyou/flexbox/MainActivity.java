@@ -32,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
         list.add("Android工程师");
         list.add("iOS工程师");
 
-        final StringTagAdapter adapter = new StringTagAdapter(this, list);
-        adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
+        List<String> selectItems = new ArrayList<>();
+        selectItems.add("客户代表");
+        selectItems.add("Java工程师");
+
+        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+//        adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override
             public void onSubscribe(List<String> selectedItem) {
@@ -42,5 +46,6 @@ public class MainActivity extends AppCompatActivity {
         });
         TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
         flowLayout.setAdapter(adapter);
+        btnCount.setText("已选择" + adapter.getSelectedList().size() + "个");
     }
 }
