@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -37,11 +38,7 @@ public class MainActivity extends AppCompatActivity {
         list.add("Android工程师");
         list.add("iOS工程师");
 
-        List<String> selectItems = new ArrayList<>();
-        selectItems.add("客户代表");
-        selectItems.add("Java工程师");
-
-        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+        final StringTagAdapter adapter = new StringTagAdapter(this, list);
         adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
         adapter.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
@@ -53,8 +50,19 @@ public class MainActivity extends AppCompatActivity {
                 btnCount.setText("已选择" + selectedItem.size() + "个");
             }
         });
-        TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
+        final TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
         flowLayout.setAdapter(adapter);
         btnCount.setText("已选择" + adapter.getSelectedList().size() + "个");
+
+        findViewById(R.id.btn_switch_data).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                List<String> data = new ArrayList<>();
+                data.add("客户代表");
+                data.add("Java工程师");
+                adapter.setSource(data);
+                adapter.notifyDataSetChanged(flowLayout);
+            }
+        });
     }
 }

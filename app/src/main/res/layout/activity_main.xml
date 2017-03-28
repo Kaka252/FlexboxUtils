@@ -25,4 +25,10 @@
         android:layout_height="wrap_content"
         android:text="请选择" />
 
+    <Button
+        android:id="@+id/btn_switch_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="切换数据" />
+
 </LinearLayout>

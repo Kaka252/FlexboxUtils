@@ -57,6 +57,10 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         this.onSubscribeListener = onSubscribeListener;
     }
 
+    public void setSource(List<T> source) {
+        this.source = source;
+    }
+
     public void setSelectItems(List<T> selectItems) {
         this.selectItems = selectItems;
     }
@@ -96,6 +100,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * @param rootView
      */
     public void addTags(TagFlowLayout rootView) {
+        rootView.removeAllViews();
         for (T item : source) {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
@@ -149,6 +154,15 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
                 view.setItemSelected(false);
             }
         }
+    }
+
+    /**
+     * 刷新数据
+     *
+     * @param rootView
+     */
+    public void notifyDataSetChanged(TagFlowLayout rootView) {
+        addTags(rootView);
     }
 
     /**
