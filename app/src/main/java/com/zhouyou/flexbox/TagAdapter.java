@@ -175,6 +175,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * 获取所有item的数量
      */
     protected int getCount() {
+        if (source == null) return 0;
         return source.size();
     }
 
