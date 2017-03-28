@@ -1,5 +1,5 @@
 # FlexboxUtils
-关于Flexbox的封装类，用于展示标签和操作标签，先上图
+Google在之前发布了一个叫做FlexboxLayout的控件，完全能够适配平时我们业务中自定义的布局流控件，而且有过之而无不及。因此在这个基础上我又针对这个控件进行了进一步的封装，基本能够满足平时大部分的业务需求，先上图
 ![preview](https://github.com/Kaka252/FlexboxUtils/blob/master/screenshot/device-2017-03-28-181547.png?raw=true)
 
 # 继承BaseTagView
