@@ -13,9 +13,6 @@ import java.util.Map;
 public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
     private Context context;
-
-    private int itemDefaultDrawable;
-    private int itemSelectDrawable;
     /**
      * 数据源
      */
@@ -35,14 +32,6 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * 标签选择操作的订阅接口
      */
     private OnFlexboxSubscribeListener<T> onSubscribeListener;
-
-    public void setItemDefaultDrawable(int itemDefaultDrawable) {
-        this.itemDefaultDrawable = itemDefaultDrawable;
-    }
-
-    public void setItemSelectDrawable(int itemSelectDrawable) {
-        this.itemSelectDrawable = itemSelectDrawable;
-    }
 
     /**
      * 操作模式 0 - 多选 | 1 - 单选

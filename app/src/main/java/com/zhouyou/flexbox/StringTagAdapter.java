@@ -1,6 +1,8 @@
 package com.zhouyou.flexbox;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
@@ -25,6 +27,8 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
         StringTagView tagView = new StringTagView(getContext());
         tagView.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         tagView.setItemSelectDrawable(R.drawable.bg_flow_selected);
+        tagView.setItemDefaultTextColor(ContextCompat.getColor(getContext(), R.color.app_green));
+        tagView.setItemSelectTextColor(Color.WHITE);
         tagView.setItem(item);
         List<String> list = getSelectItems();
         if (list != null && list.size() > 0) {

@@ -1,9 +1,7 @@
 package com.zhouyou.flexbox;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -20,7 +18,8 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     private int itemDefaultDrawable;
     private int itemSelectDrawable;
 
-    private Context context;
+    private int itemDefaultTextColor;
+    private int itemSelectTextColor;
 
     private T item;
 
@@ -29,30 +28,6 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     private TagWithListener<T> listener;
 
     private boolean isItemSelected;
-
-    public boolean isItemSelected() {
-        return isItemSelected;
-    }
-
-    public void setItemSelected(boolean itemSelected) {
-        isItemSelected = itemSelected;
-        if (itemSelected) {
-            setBackgroundResource(itemSelectDrawable);
-            textView.setTextColor(Color.WHITE);
-        } else {
-            setBackgroundResource(itemDefaultDrawable);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
-        }
-    }
-
-    public void setItemDefaultDrawable(int itemDefaultDrawable) {
-        this.itemDefaultDrawable = itemDefaultDrawable;
-        setBackgroundResource(itemDefaultDrawable);
-    }
-
-    public void setItemSelectDrawable(int itemSelectDrawable) {
-        this.itemSelectDrawable = itemSelectDrawable;
-    }
 
     public void setListener(TagWithListener<T> listener) {
         this.listener = listener;
@@ -68,14 +43,12 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
 
     public BaseTagView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
         init();
     }
 
     private void init() {
         setPadding(15, 15, 15, 15);
         textView = new TextView(getContext());
-        textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
         addView(textView);
@@ -105,12 +78,45 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     protected void selectItemChangeColorState() {
         if (isItemSelected) {
             setBackgroundResource(itemDefaultDrawable);
-            textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
+            textView.setTextColor(itemDefaultTextColor);
             isItemSelected = false;
         } else {
             setBackgroundResource(itemSelectDrawable);
-            textView.setTextColor(Color.WHITE);
+            textView.setTextColor(itemSelectTextColor);
             isItemSelected = true;
         }
+    }
+
+    public boolean isItemSelected() {
+        return isItemSelected;
+    }
+
+    public void setItemSelected(boolean itemSelected) {
+        isItemSelected = itemSelected;
+        if (itemSelected) {
+            setBackgroundResource(itemSelectDrawable);
+            textView.setTextColor(itemSelectTextColor);
+        } else {
+            setBackgroundResource(itemDefaultDrawable);
+            textView.setTextColor(itemDefaultTextColor);
+        }
+    }
+
+    public void setItemDefaultDrawable(int itemDefaultDrawable) {
+        this.itemDefaultDrawable = itemDefaultDrawable;
+        setBackgroundResource(itemDefaultDrawable);
+    }
+
+    public void setItemSelectDrawable(int itemSelectDrawable) {
+        this.itemSelectDrawable = itemSelectDrawable;
+    }
+
+    public void setItemDefaultTextColor(int itemDefaultTextColor) {
+        this.itemDefaultTextColor = itemDefaultTextColor;
+        textView.setTextColor(itemDefaultTextColor);
+    }
+
+    public void setItemSelectTextColor(int itemSelectTextColor) {
+        this.itemSelectTextColor = itemSelectTextColor;
     }
 }
