@@ -183,6 +183,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      *
      * @return
      */
+    @SuppressWarnings("SuspiciousMethodCalls")
     public List<T> getSelectedList() {
         List<T> selectedList = new ArrayList<>();
         for (BaseTagView<T> view : viewMap.keySet()) {
