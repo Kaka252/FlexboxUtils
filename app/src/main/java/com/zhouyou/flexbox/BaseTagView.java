@@ -17,6 +17,9 @@ import android.widget.TextView;
  */
 public class BaseTagView<T> extends FrameLayout implements View.OnClickListener {
 
+    private int itemDefaultDrawable;
+    private int itemSelectDrawable;
+
     private Context context;
 
     private T item;
@@ -34,12 +37,21 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
     public void setItemSelected(boolean itemSelected) {
         isItemSelected = itemSelected;
         if (itemSelected) {
-            setBackgroundResource(R.drawable.bg_flow_selected);
+            setBackgroundResource(itemSelectDrawable);
             textView.setTextColor(Color.WHITE);
         } else {
-            setBackgroundResource(R.drawable.bg_flow_unselect);
+            setBackgroundResource(itemDefaultDrawable);
             textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
         }
+    }
+
+    public void setItemDefaultDrawable(int itemDefaultDrawable) {
+        this.itemDefaultDrawable = itemDefaultDrawable;
+        setBackgroundResource(itemDefaultDrawable);
+    }
+
+    public void setItemSelectDrawable(int itemSelectDrawable) {
+        this.itemSelectDrawable = itemSelectDrawable;
     }
 
     public void setListener(TagWithListener<T> listener) {
@@ -62,7 +74,6 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
 
     private void init() {
         setPadding(15, 15, 15, 15);
-        setBackgroundResource(R.drawable.bg_flow_unselect);
         textView = new TextView(getContext());
         textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
         textView.setGravity(Gravity.CENTER);
@@ -93,11 +104,11 @@ public class BaseTagView<T> extends FrameLayout implements View.OnClickListener 
 
     protected void selectItemChangeColorState() {
         if (isItemSelected) {
-            setBackgroundResource(R.drawable.bg_flow_unselect);
+            setBackgroundResource(itemDefaultDrawable);
             textView.setTextColor(ContextCompat.getColor(context, R.color.app_green));
             isItemSelected = false;
         } else {
-            setBackgroundResource(R.drawable.bg_flow_selected);
+            setBackgroundResource(itemSelectDrawable);
             textView.setTextColor(Color.WHITE);
             isItemSelected = true;
         }

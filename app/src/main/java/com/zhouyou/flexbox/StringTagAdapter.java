@@ -23,6 +23,8 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
     @Override
     protected StringTagView addTag(String item) {
         StringTagView tagView = new StringTagView(getContext());
+        tagView.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
+        tagView.setItemSelectDrawable(R.drawable.bg_flow_selected);
         tagView.setItem(item);
         List<String> list = getSelectItems();
         if (list != null && list.size() > 0) {
