@@ -3,6 +3,7 @@ package com.zhouyou.flexbox;
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -110,7 +111,24 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     /**
      * 单选操作模式
      */
-    protected abstract void singleSelectMode(T item);
+    private void singleSelectMode(T item) {
+        for (BaseTagView<T> view : viewMap.keySet()) {
+            if (checkIsSameItem((V) view, item)) {
+                view.setItemSelected(true);
+            } else {
+                view.setItemSelected(false);
+            }
+        }
+    }
+
+    /**
+     * 对于相同item的判断条件
+     *
+     * @param view
+     * @param item
+     * @return
+     */
+    protected abstract boolean checkIsSameItem(V view, T item);
 
     /**
      * 添加单个标签
@@ -128,9 +146,18 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     }
 
     /**
-     * 已选择的item列表
+     * 得到已选项目的列表
      *
      * @return
      */
-    protected abstract List<T> getSelectedList();
+    public List<T> getSelectedList() {
+        List<T> selectedList = new ArrayList<>();
+        for (BaseTagView<T> view : viewMap.keySet()) {
+            if (view.isItemSelected()) {
+                T item = viewMap.get(view);
+                selectedList.add(item);
+            }
+        }
+        return selectedList;
+    }
 }

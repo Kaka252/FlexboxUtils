@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +19,17 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 
     StringTagAdapter(Context context, List<String> data, List<String> selectItems) {
         super(context, data, selectItems);
+    }
+
+    /**
+     * 检查item和所选item是否一样
+     * @param view
+     * @param item
+     * @return
+     */
+    @Override
+    protected boolean checkIsSameItem(StringTagView view, String item) {
+        return TextUtils.equals(view.getItem(), item);
     }
 
     @Override
@@ -41,28 +51,5 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
             }
         }
         return tagView;
-    }
-
-    @Override
-    protected List<String> getSelectedList() {
-        List<String> selectedList = new ArrayList<>();
-        for (StringTagView view : viewMap.keySet()) {
-            if (view.isItemSelected()) {
-                String item = viewMap.get(view);
-                selectedList.add(item);
-            }
-        }
-        return selectedList;
-    }
-
-    @Override
-    protected void singleSelectMode(String item) {
-        for (StringTagView view : viewMap.keySet()) {
-            if (view.getItem().equals(item)) {
-                view.setItemSelected(true);
-            } else {
-                view.setItemSelected(false);
-            }
-        }
     }
 }
