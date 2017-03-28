@@ -1,13 +1,15 @@
-package com.zhouyou.flexbox;
+package zhouyou.flexbox.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
 
 import com.google.android.flexbox.FlexboxLayout;
 
+import zhouyou.flexbox.adapter.TagAdapter;
+
 /**
  * 作者：ZhouYou
- * 日期：2017/3/25.
+ * 日期：2017/3/28.
  */
 public class TagFlowLayout extends FlexboxLayout {
 

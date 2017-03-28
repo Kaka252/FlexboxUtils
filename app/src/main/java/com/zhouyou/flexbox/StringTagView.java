@@ -4,6 +4,8 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 
+import zhouyou.flexbox.widget.BaseTagView;
+
 /**
  * 作者：ZhouYou
  * 日期：2017/3/25.

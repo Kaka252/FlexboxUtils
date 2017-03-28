@@ -9,6 +9,9 @@ import android.widget.Button;
 import java.util.ArrayList;
 import java.util.List;
 
+import zhouyou.flexbox.interfaces.OnFlexboxSubscribeListener;
+import zhouyou.flexbox.widget.TagFlowLayout;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

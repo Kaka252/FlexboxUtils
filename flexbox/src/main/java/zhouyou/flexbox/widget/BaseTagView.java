@@ -1,4 +1,4 @@
-package com.zhouyou.flexbox;
+package zhouyou.flexbox.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import zhouyou.flexbox.interfaces.TagWithListener;
 
 /**
  * 作者：ZhouYou

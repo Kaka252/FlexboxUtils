@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import zhouyou.flexbox.adapter.TagAdapter;
+
 /**
  * 作者：ZhouYou
  * 日期：2017/3/27

@@ -1,4 +1,4 @@
-package com.zhouyou.flexbox;
+package zhouyou.flexbox.adapter;
 
 import android.content.Context;
 import android.support.v4.util.ArrayMap;
@@ -6,6 +6,11 @@ import android.support.v4.util.ArrayMap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import zhouyou.flexbox.widget.BaseTagView;
+import zhouyou.flexbox.interfaces.OnFlexboxSubscribeListener;
+import zhouyou.flexbox.widget.TagFlowLayout;
+import zhouyou.flexbox.interfaces.TagWithListener;
 
 /**
  * 作者：ZhouYou
@@ -35,11 +40,11 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     private OnFlexboxSubscribeListener<T> onSubscribeListener;
 
     /*默认和已选的背景*/
-    int itemDefaultDrawable;
-    int itemSelectDrawable;
+    protected int itemDefaultDrawable;
+    protected int itemSelectDrawable;
     /*默认和已选的文字颜色*/
-    int itemDefaultTextColor;
-    int itemSelectTextColor;
+    protected int itemDefaultTextColor;
+    protected int itemSelectTextColor;
 
     /**
      * 操作模式 0 - 多选 | 1 - 单选
@@ -48,7 +53,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     public static final int MODE_MULTI_SELECT = 0;
     public static final int MODE_SINGLE_SELECT = 1;
 
-    void setOnSubscribeListener(OnFlexboxSubscribeListener<T> onSubscribeListener) {
+    public void setOnSubscribeListener(OnFlexboxSubscribeListener<T> onSubscribeListener) {
         this.onSubscribeListener = onSubscribeListener;
     }
 
@@ -64,20 +69,20 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         this.mode = mode;
     }
 
-    TagAdapter(Context context, List<T> source) {
+    public TagAdapter(Context context, List<T> source) {
         this.context = context;
         this.source = source;
         viewMap = new ArrayMap<>();
     }
 
-    TagAdapter(Context context, List<T> source, List<T> selectItems) {
+    public TagAdapter(Context context, List<T> source, List<T> selectItems) {
         this.context = context;
         this.source = source;
         this.selectItems = selectItems;
         viewMap = new ArrayMap<>();
     }
 
-    Context getContext() {
+    public Context getContext() {
         return context;
     }
 
@@ -90,7 +95,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      *
      * @param rootView
      */
-    void addTags(TagFlowLayout rootView) {
+    public void addTags(TagFlowLayout rootView) {
         for (T item : source) {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
@@ -185,7 +190,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * @return
      */
     @SuppressWarnings("SuspiciousMethodCalls")
-    List<T> getSelectedList() {
+    public List<T> getSelectedList() {
         List<T> selectedList = new ArrayList<>();
         for (BaseTagView<T> view : viewMap.keySet()) {
             if (view.isItemSelected()) {
@@ -196,19 +201,19 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         return selectedList;
     }
 
-    void setItemDefaultDrawable(int itemDefaultDrawable) {
+    public void setItemDefaultDrawable(int itemDefaultDrawable) {
         this.itemDefaultDrawable = itemDefaultDrawable;
     }
 
-    void setItemSelectDrawable(int itemSelectDrawable) {
+    public void setItemSelectDrawable(int itemSelectDrawable) {
         this.itemSelectDrawable = itemSelectDrawable;
     }
 
-    void setItemDefaultTextColor(int itemDefaultTextColor) {
+    public void setItemDefaultTextColor(int itemDefaultTextColor) {
         this.itemDefaultTextColor = itemDefaultTextColor;
     }
 
-    void setItemSelectTextColor(int itemSelectTextColor) {
+    public void setItemSelectTextColor(int itemSelectTextColor) {
         this.itemSelectTextColor = itemSelectTextColor;
     }
 }

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FlexboxDemo.iml" filepath="$PROJECT_DIR$/FlexboxDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flexbox/flexbox.iml" filepath="$PROJECT_DIR$/flexbox/flexbox.iml" />
     </modules>
   </component>
 </project>

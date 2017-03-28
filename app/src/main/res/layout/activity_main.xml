@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context="com.zhouyou.flexbox.MainActivity">
 
-    <com.zhouyou.flexbox.TagFlowLayout
+    <zhouyou.flexbox.widget.TagFlowLayout
         android:id="@+id/flow_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

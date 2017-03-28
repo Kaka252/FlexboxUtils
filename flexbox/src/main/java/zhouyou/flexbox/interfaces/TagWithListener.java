@@ -1,4 +1,4 @@
-package com.zhouyou.flexbox;
+package zhouyou.flexbox.interfaces;
 
 /**
  * 作者：ZhouYou
