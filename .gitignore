@@ -8,6 +8,8 @@
 .idea/modules.xml
 .idea/compiler.xml
 .idea/vcs.xml
+.idea/markdown-navigator
+.idea/markdown-navigator.xml
 .DS_Store
 /build
 /captures

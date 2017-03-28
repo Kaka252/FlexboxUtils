@@ -38,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
         list.add("Android工程师");
         list.add("iOS工程师");
 
-        final StringTagAdapter adapter = new StringTagAdapter(this, list);
+        List<String> selectItems = new ArrayList<>();
+        selectItems.add("客户代表");
+        selectItems.add("Java工程师");
+
+        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
         adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
         adapter.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
@@ -60,7 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 List<String> data = new ArrayList<>();
                 data.add("客户代表");
                 data.add("Java工程师");
+
+                List<String> selectList = new ArrayList<>();
+                selectList.add("客户代表");
                 adapter.setSource(data);
+                adapter.setSelectItems(selectList);
                 adapter.notifyDataSetChanged(flowLayout);
             }
         });
