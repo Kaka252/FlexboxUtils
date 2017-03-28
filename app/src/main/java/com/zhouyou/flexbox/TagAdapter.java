@@ -147,6 +147,11 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      */
     protected abstract boolean checkIsItemSame(V view, T item);
 
+    /**
+     * 检查item是否是空指针
+     * @param item
+     * @return
+     */
     protected abstract boolean checkIsItemNull(T item);
 
     /**
