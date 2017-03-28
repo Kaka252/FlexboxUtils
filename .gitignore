@@ -3,7 +3,15 @@
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
+.idea/misc.xml
+.idea/encodings.xml
+.idea/modules.xml
+.idea/compiler.xml
+.idea/vcs.xml
 .DS_Store
 /build
 /captures
 .externalNativeBuild
+app/libs/
+flexbox/libs/
+flexbox/src/main/res/drawable/
