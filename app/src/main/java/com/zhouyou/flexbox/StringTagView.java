@@ -3,8 +3,6 @@ package com.zhouyou.flexbox;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Toast;
 
 import zhouyou.flexbox.widget.BaseTagView;
 
@@ -30,11 +28,5 @@ public class StringTagView extends BaseTagView<String> {
     public void setItem(String item) {
         super.setItem(item);
         textView.setText(item);
-    }
-
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        Toast.makeText(getContext(), getItem(), Toast.LENGTH_SHORT).show();
     }
 }

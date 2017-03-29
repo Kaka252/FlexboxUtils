@@ -73,15 +73,5 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
-
-//        StringTagView tagView = new StringTagView(this);
-//        tagView.setPadding(20, 20, 20, 20);
-//        tagView.setItem("+");
-//        tagView.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
-//        tagView.setItemSelectDrawable(R.drawable.bg_flow_unselect);
-//        tagView.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
-//        tagView.setItemSelectTextColor(ContextCompat.getColor(this, R.color.app_green));
-//        Log.d("MainActivity", "子布局数量 = " + flowLayout.getChildCount());
-//        flowLayout.addView(tagView);
     }
 }
