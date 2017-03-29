@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("客户代表");
         selectItems.add("Java工程师");
 
-        final StringTagAdapter adapter = new StringTagAdapter(this, null, selectItems);
+        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
 //        adapter.setShowHighlight(false);
         adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
@@ -73,5 +73,15 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
         });
+
+//        StringTagView tagView = new StringTagView(this);
+//        tagView.setPadding(20, 20, 20, 20);
+//        tagView.setItem("+");
+//        tagView.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
+//        tagView.setItemSelectDrawable(R.drawable.bg_flow_unselect);
+//        tagView.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
+//        tagView.setItemSelectTextColor(ContextCompat.getColor(this, R.color.app_green));
+//        Log.d("MainActivity", "子布局数量 = " + flowLayout.getChildCount());
+//        flowLayout.addView(tagView);
     }
 }
