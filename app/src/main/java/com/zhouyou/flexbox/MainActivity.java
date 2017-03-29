@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("客户代表");
         selectItems.add("Java工程师");
 
-        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+        final StringTagAdapter adapter = new StringTagAdapter(this, null, selectItems);
 //        adapter.setShowHighlight(false);
         adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
         adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);

@@ -121,6 +121,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * 设置标签组
      */
     public void addTags() {
+        if (source == null || source.size() <= 0) return;
         rootView.removeAllViews();
         for (T item : source) {
             if (item == null) continue;
@@ -152,13 +153,12 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      */
     private void initSelectedViews(V view) {
         if (!isShowHighlight) return;
-        if (selectItems != null && selectItems.size() > 0) {
-            for (T select : selectItems) {
-                if (checkIsItemNull(select)) continue;
-                if (checkIsItemSame(view, select)) {
-                    view.setItemSelected(true);
-                    break;
-                }
+        if (selectItems == null || selectItems.size() <= 0) return;
+        for (T select : selectItems) {
+            if (checkIsItemNull(select)) continue;
+            if (checkIsItemSame(view, select)) {
+                view.setItemSelected(true);
+                break;
             }
         }
     }
