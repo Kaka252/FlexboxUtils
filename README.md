@@ -117,17 +117,17 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
     adapter.setShowHighlight(false);
 ```
 
-# 切换、刷新数据
-在声明的adapter基础上，重新设置数据源和已选项，notifyDataSetChanged()方法并传入TagFlowLayout参数即可完成数据刷新操作
-```
-    ...
-    adapter.setSource(data);
-    adapter.setSelectItems(selectItems);
-    adapter.notifyDataSetChanged(flowLayout);
-```
 # 绑定数据到控件
 通过声明TagFlowLayout，并且调用setAdapter()方法来接收之前定义好的adapter即可
 ```
     TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
     flowLayout.setAdapter(adapter);
+```
+# 切换、刷新数据
+在声明的adapter基础上，重新设置数据源和已选项，notifyDataSetChanged()方法即可完成数据刷新操作
+```
+    ...
+    adapter.setSource(data);
+    adapter.setSelectItems(selectItems);
+    adapter.notifyDataSetChanged();
 ```
