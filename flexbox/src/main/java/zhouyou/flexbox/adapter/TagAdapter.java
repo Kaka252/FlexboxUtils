@@ -127,6 +127,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             if (item == null) continue;
             final BaseTagView<T> view = addTag(item);
             initSelectedViews((V) view);
+            // 单个item的点击监控
             view.setListener(new TagWithListener<T>() {
                 @Override
                 public void onItemSelect(T item) {
