@@ -18,6 +18,8 @@ import zhouyou.flexbox.interfaces.TagWithListener;
  */
 public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
+    private TagFlowLayout rootView;
+
     private Context context;
     /**
      * 数据源
@@ -104,11 +106,21 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     }
 
     /**
-     * 设置标签组
+     * 绑定控件
      *
      * @param rootView
      */
-    public void addTags(TagFlowLayout rootView) {
+    public void bindView(TagFlowLayout rootView) {
+        if (rootView == null) {
+            throw new NullPointerException("未初始化TagFlowLayout");
+        }
+        this.rootView = rootView;
+    }
+
+    /**
+     * 设置标签组
+     */
+    public void addTags() {
         rootView.removeAllViews();
         for (T item : source) {
             if (item == null) continue;
@@ -167,11 +179,9 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
     /**
      * 刷新数据
-     *
-     * @param rootView
      */
-    public void notifyDataSetChanged(TagFlowLayout rootView) {
-        addTags(rootView);
+    public void notifyDataSetChanged() {
+        addTags();
     }
 
     /**

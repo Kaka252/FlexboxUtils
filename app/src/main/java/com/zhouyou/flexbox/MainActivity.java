@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 selectList.add("客户代表");
                 adapter.setSource(data);
                 adapter.setSelectItems(selectList);
-                adapter.notifyDataSetChanged(flowLayout);
+                adapter.notifyDataSetChanged();
             }
         });
     }

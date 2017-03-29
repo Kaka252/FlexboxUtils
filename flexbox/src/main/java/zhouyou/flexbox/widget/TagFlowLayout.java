@@ -27,6 +27,7 @@ public class TagFlowLayout extends FlexboxLayout {
 
     public void setAdapter(TagAdapter adapter) {
         if (adapter == null) return;
-        adapter.addTags(this);
+        adapter.bindView(this);
+        adapter.addTags();
     }
 }
