@@ -10,5 +10,6 @@
             <enum name="MULTI" value="0" />
             <enum name="SINGLE" value="1"/>
         </attr>
+        <attr name="maxSelectionCount" format="integer"/>
     </declare-styleable>
 </resources>

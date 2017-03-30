@@ -25,6 +25,8 @@ public class TagFlowLayout extends FlexboxLayout {
     private int itemSelectTextColor;
     /*操作模式 0 - 多选 | 1 - 单选*/
     private int mode = MODE_MULTI_SELECT;
+    /*可选标签的最大数量*/
+    private int maxSelection;
     public static final int MODE_MULTI_SELECT = 0;
     public static final int MODE_SINGLE_SELECT = 1;
 
@@ -45,6 +47,7 @@ public class TagFlowLayout extends FlexboxLayout {
         itemDefaultTextColor = ta.getColor(R.styleable.TagFlowLayout_defaultTextColor, 0);
         itemSelectTextColor = ta.getColor(R.styleable.TagFlowLayout_selectTextColor, 0);
         mode = ta.getInt(R.styleable.TagFlowLayout_mode, MODE_MULTI_SELECT);
+        maxSelection = ta.getInt(R.styleable.TagFlowLayout_maxSelectionCount, 0);
         ta.recycle();
     }
 
@@ -59,6 +62,7 @@ public class TagFlowLayout extends FlexboxLayout {
         adapter.setItemDefaultTextColor(itemDefaultTextColor);
         adapter.setItemSelectTextColor(itemSelectTextColor);
         adapter.setMode(mode);
+        adapter.setMaxSelection(maxSelection);
         adapter.setShowHighlight(isShowHighlight);
         adapter.addTags();
     }
@@ -109,5 +113,13 @@ public class TagFlowLayout extends FlexboxLayout {
 
     public void setMode(int mode) {
         this.mode = mode;
+    }
+
+    public int getMaxSelection() {
+        return maxSelection;
+    }
+
+    public void setMaxSelection(int maxSelection) {
+        this.maxSelection = maxSelection;
     }
 }
