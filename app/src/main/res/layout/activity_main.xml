@@ -23,7 +23,7 @@
         app:selectTextColor="@android:color/white"
         app:defaultTextColor="@color/app_green"
         app:maxSelectionCount="5"
-        app:mode="MULTI"/>
+        app:mode="SINGLE"/>
 
     <Button
         android:id="@+id/btn_get_count"

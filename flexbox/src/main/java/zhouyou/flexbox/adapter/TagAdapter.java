@@ -127,6 +127,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
                 @Override
                 public void onItemSelect(T item) {
                     if (mode == TagFlowLayout.MODE_SINGLE_SELECT) {
+                        if (isShowHighlight) view.selectItemChangeColorState();
                         singleSelectMode(item);
                     } else {
                         List<T> selectList = getSelectedList();
@@ -134,9 +135,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
                             Toast.makeText(getContext(), "最多选择" + maxSelection + "个标签", Toast.LENGTH_SHORT).show();
                             return;
                         }
-                    }
-                    if (isShowHighlight) {
-                        view.selectItemChangeColorState();
+                        if (isShowHighlight) view.selectItemChangeColorState();
                     }
                     if (onSubscribeListener != null) {
                         onSubscribeListener.onSubscribe(getSelectedList());
