@@ -1,6 +1,8 @@
 package com.zhouyou.flexbox;
 
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -40,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
         selectItems.add("客户代表");
         selectItems.add("Java工程师");
         final TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
-//        flowLayout.setShowHighlight(false);
-//        flowLayout.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
-//        flowLayout.setItemSelectDrawable(R.drawable.bg_flow_selected);
-//        flowLayout.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
-//        flowLayout.setItemSelectTextColor(Color.WHITE);
-//        flowLayout.setMode(TagFlowLayout.MODE_SINGLE_SELECT);
+        flowLayout.setShowHighlight(false);
+        flowLayout.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
+        flowLayout.setItemSelectDrawable(R.drawable.bg_flow_selected);
+        flowLayout.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
+        flowLayout.setItemSelectTextColor(Color.WHITE);
+        flowLayout.setMode(TagFlowLayout.MODE_SINGLE_SELECT);
         final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override

@@ -87,18 +87,54 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 }
 ```
 # 使用
-在Activity中声明如下代码，并通过以上定义好的adapter从而完成对标签的样式的设置
+在xml中，你可以使用如下配置:
 ```
-    StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
-    adapter.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
-    adapter.setItemSelectDrawable(R.drawable.bg_flow_selected);
-    adapter.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
-    adapter.setItemSelectTextColor(Color.WHITE);
+<resources>
+    <declare-styleable name="TagFlowLayout">
+        <attr name="showHighlight" format="boolean" /> // 是否选中高亮
+        <attr name="defaultDrawable" format="reference" /> // 默认标签背景
+        <attr name="selectDrawable" format="reference" /> // 选中标签背景
+        <attr name="defaultTextColor" format="color|reference"/> // 默认标签文字颜色
+        <attr name="selectTextColor" format="color|reference" /> // 选中标签文字颜色
+        <attr name="mode"> // 单选或者多选
+            <enum name="MULTI" value="0" /> // 默认多选
+            <enum name="SINGLE" value="1"/> // 单选
+        </attr>
+    </declare-styleable>
+</resources>
+```
+```
+    <zhouyou.flexbox.widget.TagFlowLayout
+        android:id="@+id/flow_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:alignContent="flex_start"
+        app:alignItems="center"
+        app:dividerDrawable="@drawable/bg_flow_divider"
+        app:flexDirection="row"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:showDivider="beginning|middle|end"
+        app:selectDrawable="@drawable/bg_flow_selected"
+        app:defaultDrawable="@drawable/bg_flow_unselect"
+        app:selectTextColor="@android:color/white"
+        app:defaultTextColor="@color/app_green"
+        app:mode="SINGLE"/>
+```
+也可以使用Java代码进行属性配置
+```
+    TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
+    flowLayout.setShowHighlight(false);
+    flowLayout.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
+    flowLayout.setItemSelectDrawable(R.drawable.bg_flow_selected);
+    flowLayout.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
+    flowLayout.setItemSelectTextColor(Color.WHITE);
+    flowLayout.setMode(TagFlowLayout.MODE_SINGLE_SELECT);
 ```
 # 回调
 可以使用如下回调来获取最终所选择的项目列表
 ```
-    StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+    ...
     adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
         @Override
         public void onSubscribe(List<String> selectedItem) {
@@ -108,19 +144,20 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 # 操作模式
 可以通过设置模式来控制标签的单选与多选操作
 ```
-    StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+    ...
     adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
 ```
 # 选中高亮效果
 可以设置是否选中高亮，默认为选中高亮
 ```
+    ...
     adapter.setShowHighlight(false);
 ```
 
 # 绑定数据到控件
 通过声明TagFlowLayout，并且调用setAdapter()方法来接收之前定义好的adapter即可
 ```
-    TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
+    ...
     flowLayout.setAdapter(adapter);
 ```
 # 切换、刷新数据
