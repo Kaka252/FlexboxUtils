@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="TagFlowLayout">
+        <attr name="showHighlight" format="boolean" />
+        <attr name="defaultDrawable" format="reference" />
+        <attr name="selectDrawable" format="reference" />
+        <attr name="defaultTextColor" format="color|reference"/>
+        <attr name="selectTextColor" format="color|reference" />
+        <attr name="mode">
+            <enum name="MULTI" value="0" />
+            <enum name="SINGLE" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

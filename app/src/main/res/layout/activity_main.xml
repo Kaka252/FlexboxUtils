@@ -17,7 +17,12 @@
         app:flexDirection="row"
         app:flexWrap="wrap"
         app:justifyContent="flex_start"
-        app:showDivider="beginning|middle|end" />
+        app:showDivider="beginning|middle|end"
+        app:selectDrawable="@drawable/bg_flow_selected"
+        app:defaultDrawable="@drawable/bg_flow_unselect"
+        app:selectTextColor="@android:color/white"
+        app:defaultTextColor="@color/app_green"
+        app:mode="SINGLE"/>
 
     <Button
         android:id="@+id/btn_get_count"

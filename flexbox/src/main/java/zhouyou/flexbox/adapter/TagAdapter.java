@@ -18,9 +18,12 @@ import zhouyou.flexbox.interfaces.TagWithListener;
  */
 public abstract class TagAdapter<V extends BaseTagView<T>, T> {
 
+    private Context context;
+    /**
+     * 根布局
+     */
     private TagFlowLayout rootView;
 
-    private Context context;
     /**
      * 数据源
      */
@@ -30,32 +33,21 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * 已选项目
      */
     private List<T> selectItems;
-
-    /**
-     * view和tag的对应关系
-     */
+    /*view和tag的对应关系*/
     private Map<V, T> viewMap;
-
-    /**
-     * 标签选择操作的订阅接口
-     */
+    /*标签选择操作的订阅接口*/
     private OnFlexboxSubscribeListener<T> onSubscribeListener;
-
-    /**
-     * 是否展示选中效果
-     */
+    /*是否展示选中效果*/
     private boolean isShowHighlight = true;
-
+    /*可选标签的最大数量*/
+    private int maxSelection;
     /*默认和已选的背景*/
     protected int itemDefaultDrawable;
     protected int itemSelectDrawable;
     /*默认和已选的文字颜色*/
     protected int itemDefaultTextColor;
     protected int itemSelectTextColor;
-
-    /**
-     * 操作模式 0 - 多选 | 1 - 单选
-     */
+    /*操作模式 0 - 多选 | 1 - 单选*/
     private int mode = MODE_MULTI_SELECT;
     public static final int MODE_MULTI_SELECT = 0;
     public static final int MODE_SINGLE_SELECT = 1;
