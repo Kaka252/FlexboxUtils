@@ -1,8 +1,6 @@
 package com.zhouyou.flexbox;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,42 +11,48 @@ import java.util.List;
 import zhouyou.flexbox.interfaces.OnFlexboxSubscribeListener;
 import zhouyou.flexbox.widget.TagFlowLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private Button btnCount;
+    private StringTagAdapter adapter;
+
+    private List<String> sourceData;
+    private List<String> selectItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initData();
+        initViews();
+    }
 
-        final Button btnCount = (Button) findViewById(R.id.btn_get_count);
+    private void initData() {
+        sourceData = new ArrayList<>();
+        sourceData.add("程序员");
+        sourceData.add("设计师");
+        sourceData.add("产品经理");
+        sourceData.add("运营");
+        sourceData.add("商务");
+        sourceData.add("人事经理");
+        sourceData.add("项目经理");
+        sourceData.add("客户代表");
+        sourceData.add("技术主管");
+        sourceData.add("测试工程师");
+        sourceData.add("前端工程师");
+        sourceData.add("Java工程师");
+        sourceData.add("Android工程师");
+        sourceData.add("iOS工程师");
 
-        List<String> list = new ArrayList<>();
-        list.add("程序员");
-        list.add("设计师");
-        list.add("产品经理");
-        list.add("运营");
-        list.add("商务");
-        list.add("人事经理");
-        list.add("项目经理");
-        list.add("客户代表");
-        list.add("技术主管");
-        list.add("测试工程师");
-        list.add("前端工程师");
-        list.add("Java工程师");
-        list.add("Android工程师");
-        list.add("iOS工程师");
-
-        List<String> selectItems = new ArrayList<>();
+        selectItems = new ArrayList<>();
         selectItems.add("客户代表");
         selectItems.add("Java工程师");
-        final TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
-        flowLayout.setShowHighlight(false);
-        flowLayout.setItemDefaultDrawable(R.drawable.bg_flow_unselect);
-        flowLayout.setItemSelectDrawable(R.drawable.bg_flow_selected);
-        flowLayout.setItemDefaultTextColor(ContextCompat.getColor(this, R.color.app_green));
-        flowLayout.setItemSelectTextColor(Color.WHITE);
-        flowLayout.setMode(TagFlowLayout.MODE_SINGLE_SELECT);
-        final StringTagAdapter adapter = new StringTagAdapter(this, list, selectItems);
+    }
+
+    private void initViews() {
+        TagFlowLayout flowLayout = (TagFlowLayout) findViewById(R.id.flow_layout);
+        btnCount = (Button) findViewById(R.id.btn_get_count);
+        adapter = new StringTagAdapter(this, sourceData, selectItems);
         adapter.setOnSubscribeListener(new OnFlexboxSubscribeListener<String>() {
             @Override
             public void onSubscribe(List<String> selectedItem) {
@@ -57,10 +61,13 @@ public class MainActivity extends AppCompatActivity {
         });
         flowLayout.setAdapter(adapter);
         btnCount.setText("已选择" + adapter.getSelectedList().size() + "个");
+        findViewById(R.id.btn_switch_data).setOnClickListener(this);
+    }
 
-        findViewById(R.id.btn_switch_data).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btn_switch_data:
                 List<String> data = new ArrayList<>();
                 data.add("客户代表");
                 data.add("Java工程师");
@@ -70,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setSource(data);
                 adapter.setSelectItems(selectList);
                 adapter.notifyDataSetChanged();
-            }
-        });
+                break;
+            default:
+                break;
+        }
     }
 }

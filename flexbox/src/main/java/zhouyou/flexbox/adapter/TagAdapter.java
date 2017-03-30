@@ -160,6 +160,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
      * 单选操作模式
      */
     private void singleSelectMode(T item) {
+        if (!isShowHighlight) return;
         for (BaseTagView<T> view : viewMap.keySet()) {
             if (checkIsItemSame((V) view, item)) {
                 view.setItemSelected(true);
