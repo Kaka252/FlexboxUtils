@@ -145,7 +145,7 @@ public class StringTagAdapter extends TagAdapter<StringTagView, String> {
 可以通过设置模式来控制标签的单选与多选操作
 ```
     ...
-    adapter.setMode(TagAdapter.MODE_SINGLE_SELECT);
+    adapter.setMode(TagFlowLayout.MODE_SINGLE_SELECT);
 ```
 # 选中高亮效果
 可以设置是否选中高亮，默认为选中高亮
