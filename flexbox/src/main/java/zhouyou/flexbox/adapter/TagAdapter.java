@@ -40,7 +40,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     /*是否展示选中效果*/
     private boolean isShowHighlight = true;
     /*可选标签的最大数量*/
-    private int maxSelection;
+    private int maxSelection = -1;
     /*默认和已选的背景*/
     protected int itemDefaultDrawable;
     protected int itemSelectDrawable;
@@ -48,9 +48,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
     protected int itemDefaultTextColor;
     protected int itemSelectTextColor;
     /*操作模式 0 - 多选 | 1 - 单选*/
-    private int mode = MODE_MULTI_SELECT;
-    public static final int MODE_MULTI_SELECT = 0;
-    public static final int MODE_SINGLE_SELECT = 1;
+    private int mode;
 
     public void setOnSubscribeListener(OnFlexboxSubscribeListener<T> onSubscribeListener) {
         this.onSubscribeListener = onSubscribeListener;
@@ -126,7 +124,7 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
                     if (isShowHighlight) {
                         view.selectItemChangeColorState();
                     }
-                    if (mode == MODE_SINGLE_SELECT) {
+                    if (mode == TagFlowLayout.MODE_SINGLE_SELECT) {
                         singleSelectMode(item);
                     }
                     if (onSubscribeListener != null) {
