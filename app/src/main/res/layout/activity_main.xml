@@ -22,8 +22,7 @@
         app:defaultDrawable="@drawable/bg_flow_unselect"
         app:selectTextColor="@android:color/white"
         app:defaultTextColor="@color/app_green"
-        app:maxSelectionCount="5"
-        app:mode="SINGLE"/>
+        app:mode="MULTI"/>
 
     <Button
         android:id="@+id/btn_get_count"

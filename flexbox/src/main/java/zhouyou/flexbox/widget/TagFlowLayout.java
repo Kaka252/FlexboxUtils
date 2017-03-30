@@ -57,13 +57,6 @@ public class TagFlowLayout extends FlexboxLayout {
             return;
         }
         adapter.bindView(this);
-        adapter.setItemDefaultDrawable(itemDefaultDrawable);
-        adapter.setItemSelectDrawable(itemSelectDrawable);
-        adapter.setItemDefaultTextColor(itemDefaultTextColor);
-        adapter.setItemSelectTextColor(itemSelectTextColor);
-        adapter.setMode(mode);
-        adapter.setMaxSelection(maxSelection);
-        adapter.setShowHighlight(isShowHighlight);
         adapter.addTags();
     }
 

@@ -67,18 +67,6 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
         return selectItems;
     }
 
-    public void setMode(int mode) {
-        this.mode = mode;
-    }
-
-    public void setShowHighlight(boolean showHighlight) {
-        isShowHighlight = showHighlight;
-    }
-
-    public void setMaxSelection(int maxSelection) {
-        this.maxSelection = maxSelection;
-    }
-
     public TagAdapter(Context context, List<T> source) {
         this.context = context;
         this.source = source;
@@ -110,6 +98,13 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             throw new NullPointerException("未初始化TagFlowLayout");
         }
         this.rootView = rootView;
+        isShowHighlight = rootView.isShowHighlight();
+        itemDefaultDrawable = rootView.getItemDefaultDrawable();
+        itemSelectDrawable = rootView.getItemSelectDrawable();
+        itemDefaultTextColor = rootView.getItemDefaultTextColor();
+        itemSelectTextColor = rootView.getItemSelectTextColor();
+        maxSelection = rootView.getMaxSelection();
+        mode = rootView.getMode();
     }
 
     /**
@@ -234,21 +229,5 @@ public abstract class TagAdapter<V extends BaseTagView<T>, T> {
             }
         }
         return selectedList;
-    }
-
-    public void setItemDefaultDrawable(int itemDefaultDrawable) {
-        this.itemDefaultDrawable = itemDefaultDrawable;
-    }
-
-    public void setItemSelectDrawable(int itemSelectDrawable) {
-        this.itemSelectDrawable = itemSelectDrawable;
-    }
-
-    public void setItemDefaultTextColor(int itemDefaultTextColor) {
-        this.itemDefaultTextColor = itemDefaultTextColor;
-    }
-
-    public void setItemSelectTextColor(int itemSelectTextColor) {
-        this.itemSelectTextColor = itemSelectTextColor;
     }
 }
